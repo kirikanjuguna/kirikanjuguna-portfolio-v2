@@ -50,7 +50,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-gray-400 max-w-lg mb-8 text-lg">
-            Software Engineer building modern & World class software with clean UI,
+            Building modern & World class software with clean UI,
             performance, and scalable architecture.
           </p>
 

@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Inter, Sora } from "next/font/google";
 import "./globals.css";
+import CursorGlow from "@/components/CursorGlow";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${sora.variable} bg-[#0f0f14] text-white antialiased`}
       >
+        <CursorGlow />
         {children}
       </body>
     </html>
