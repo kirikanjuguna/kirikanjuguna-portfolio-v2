@@ -1,51 +1,60 @@
 "use client";
 
-import { motion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
+import { useEffect } from "react";
+import Image from "next/image";
 
 export default function Hero() {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const smoothX = useSpring(x, { stiffness: 200, damping: 25 });
+  const smoothY = useSpring(y, { stiffness: 200, damping: 25 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { innerWidth, innerHeight } = window;
+
+      // Subtle premium movement
+      const moveX = (e.clientX / innerWidth - 0.5) * 5;
+      const moveY = (e.clientY / innerHeight - 0.5) * 5;
+
+      x.set(moveX);
+      y.set(moveY);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [x, y]);
+
   return (
-    <section className="relative min-h-screen flex items-center">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
-        
+
         {/* LEFT CONTENT */}
         <div>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-sm uppercase tracking-widest text-[var(--gold)] mb-4"
-          >
+          <p className="text-sm uppercase tracking-widest text-[var(--gold)] mb-4">
             HELLO!
-          </motion.p>
+          </p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-bold leading-tight mb-6"
-          >
-            I'm <span className="block bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+            I'm{" "}
+            <span className="block bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
               Edwin Kirika Njuguna
             </span>
             A Software Engineer
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="text-gray-400 max-w-lg mb-8 text-lg"
-          >
+          <p className="text-gray-400 max-w-lg mb-8 text-lg">
             Software Engineer building modern & World class software with clean UI,
             performance, and scalable architecture.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2 }}
-            className="flex gap-4"
-          >
+          <div className="flex gap-4">
             <a
               href="#projects"
               className="px-6 py-3 bg-[var(--gold)] text-black font-semibold rounded-lg hover:opacity-90 transition"
@@ -59,26 +68,53 @@ export default function Hero() {
             >
               Contact Me
             </a>
-          </motion.div>
+          </div>
         </div>
 
-        {/* RIGHT VISUAL */}
-        <div className="relative hidden md:block">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-72 h-72 bg-[var(--gold)] rounded-full blur-3xl opacity-20"></div>
-          </div>
+        {/* RIGHT AVATAR */}
+        <div className="relative hidden md:flex items-center justify-center">
 
-          <div className="relative z-10 border border-gray-800 bg-[#111] rounded-2xl p-8 shadow-2xl">
-            <p className="text-gray-400 text-sm mb-2">Currently Working On</p>
-            <h3 className="text-xl font-semibold mb-4">
-              Scalable SaaS & Full-Stack Systems
-            </h3>
+          {/* Glow */}
+          <div className="absolute w-[420px] h-[420px] bg-[var(--gold)] rounded-full blur-3xl opacity-20" />
 
-            <div className="space-y-3 text-sm text-gray-500">
-              <p>⚡ Next.js & TypeScript</p>
-              <p>⚡ Node.js & MongoDB</p>
-              <p>⚡ Cloud Deployment & APIs</p>
-            </div>
+          <div className="relative z-10">
+
+            {/* Avatar */}
+            <Image
+              src="/avatar.png"
+              alt="Edwin Kirika Avatar"
+              width={350}
+              height={350}
+              priority
+              className="drop-shadow-2xl"
+            />
+
+            {/* LEFT PUPIL */}
+            <motion.div
+              className="absolute w-5 h-5 bg-black rounded-full"
+              style={{
+                top: "48.1%",     // 🔥 lowered from 39%
+                left: "38%",    // 🔥 adjusted horizontally
+                x: smoothX,
+                y: smoothY,
+              }}
+            >
+              <div className="w-2 h-2 bg-white rounded-full absolute top-[3px] left-[3px]" />
+            </motion.div>
+
+            {/* RIGHT PUPIL */}
+            <motion.div
+              className="absolute w-5 h-5 bg-black rounded-full"
+              style={{
+                top: "48%",
+                left: "57.5%",
+                x: smoothX,
+                y: smoothY,
+              }}
+            >
+              <div className="w-2 h-2 bg-white rounded-full absolute top-[3px] left-[3px]" />
+            </motion.div>
+
           </div>
         </div>
 
