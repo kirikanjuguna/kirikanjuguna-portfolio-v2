@@ -1,6 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  MotionValue,
+} from "framer-motion";
+import { useRef } from "react";
+import Link from "next/link";
 import {
   SiReact,
   SiNextdotjs,
@@ -10,169 +18,147 @@ import {
   SiMongodb,
   SiFigma,
   SiGit,
-  SiGithub,
   SiGraphql,
 } from "react-icons/si";
 import { FaGlobe } from "react-icons/fa";
 
+type Project = {
+  label: string;
+  href: string;
+  external?: boolean;
+};
+
 export default function Resume() {
-  const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
-    show: { opacity: 1, y: 0 },
-  };
+  const ref = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 25,
+    restDelta: 0.001,
+  });
+
+  const scaleY = useTransform(smoothProgress, [0, 1], [0, 1]);
+
+  // Traveler dot position
+  const travelerY = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="resume" className="relative py-32 px-6 bg-black text-white">
+    <section
+      id="resume"
+      ref={ref}
+      className="relative py-32 px-6 bg-black text-white"
+    >
       <div className="max-w-6xl mx-auto">
-
-        {/* Section Title */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-24"
-        >
+        {/* Title */}
+        <div className="mb-24">
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight">
             Resume
           </h2>
           <p className="text-gray-400 mt-4 max-w-xl">
-            A journey from student to software engineer — now building independently.
+            A journey of growth — from foundation to independence.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Timeline Wrapper */}
-        <div className="relative border-l border-[var(--gold)] pl-10 space-y-24">
+        {/* Timeline */}
+        <div className="relative">
+          {/* Base line */}
+          <div className="absolute left-4 top-0 w-[1px] h-full bg-gray-800" />
 
-          {/* FREELANCE */}
+          {/* Active progress line */}
           <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-sm text-gray-500">Jan 2026 — Present</span>
-            <h3 className="text-2xl font-semibold mt-2">
-              Freelance Software Engineer
-            </h3>
-            <p className="text-gray-400 mt-4 leading-relaxed max-w-2xl">
-              Building high-performance web platforms for clients while
-              developing independent software products focused on recurring
-              revenue.
-            </p>
+            style={{ scaleY }}
+            className="absolute left-4 top-0 w-[2px] h-full bg-[var(--gold)] origin-top"
+          />
 
-            <div className="mt-4 flex items-center gap-3 text-gray-400 text-sm">
-              <FaGlobe />
-              <a
-                href="https://www.newsongchapel.org/"
-                target="_blank"
-                className="hover:text-[var(--gold)] transition"
-              >
-                Newsong Chapel Website
-              </a>
-            </div>
+        {/* Traveler dot */}
+        <motion.div
+          style={{ top: travelerY }}
+          className="absolute left-4 -translate-x-1/2 w-4 h-4 rounded-full bg-[var(--gold)] blur-[1px] shadow-[0_0_25px_var(--gold)]"
+        />
 
-            <div className="flex gap-5 mt-6 text-xl text-gray-400">
-              <SiNextdotjs />
-              <SiReact />
-              <SiTailwindcss />
-              <SiTypescript />
-              <SiNodedotjs />
-              <SiMongodb />
-              <SiGit />
-              <SiGithub />
-            </div>
-          </motion.div>
+          <div className="space-y-28 pl-16">
+            <TimelineItem
+              activateAt={0.15}
+              progress={smoothProgress}
+              date="Sep 2019 — Oct 2023"
+              title="BSc Applied Computer Technology"
+              company="United States International University - Africa"
+              description="Built a strong foundation in software engineering, algorithms, system design, and collaborative development."
+              projects={[
+                { label: "USIU Health Center System", href: "/projects/usiu-health" },
+                { label: "Agmercado", href: "/projects/agmercado" },
+                { label: "Edd Petshop", href: "/projects/edd-petshop" },
+              ]}
+              tech={[<SiReact />, <SiNodedotjs />, <SiMongodb />, <SiGit />]}
+            />
 
-          {/* OUTLIERS */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-sm text-gray-500">Aug 2023 — Dec 2025</span>
-            <h3 className="text-2xl font-semibold mt-2">
-              Software Engineer — Outliers Marketing Ltd
-            </h3>
-            <p className="text-gray-400 mt-4 leading-relaxed max-w-2xl">
-              Joined as a frontend developer and evolved into a full-stack
-              engineer. Built corporate websites, e-commerce platforms, and
-              managed backend systems while contributing to design and digital
-              marketing initiatives.
-            </p>
+            <TimelineItem
+              activateAt={0.35}
+              progress={smoothProgress}
+              date="Jan 2023 — July 2023"
+              title="Software Engineering Intern"
+              company="Real Biz Digital"
+              description="Worked in agile remote teams building responsive UI systems and strengthening frontend architecture."
+              tech={[<SiReact />, <SiFigma />, <SiGit />]}
+            />
 
-            <div className="flex gap-5 mt-6 text-xl text-gray-400">
-              <SiReact />
-              <SiNextdotjs />
-              <SiTailwindcss />
-              <SiTypescript />
-              <SiNodedotjs />
-              <SiMongodb />
-              <SiGraphql />
-              <SiFigma />
-            </div>
-          </motion.div>
+            <TimelineItem
+              activateAt={0.6}
+              progress={smoothProgress}
+              date="Aug 2023 — Dec 2025"
+              title="Software Engineer"
+              company="Outliers Marketing Ltd"
+              description="Evolved into a full-stack engineer building corporate platforms and e-commerce systems."
+              projects={[
+                { label: "Aquosys Website", href: "https://aquosys.co.ke/", external: true },
+                { label: "Del Pro Website", href: "/projects/del-pro" },
+                { label: "Raleigh Motorbikes", href: "https://raleighmotorbikes.co.ke/", external: true },
+                { label: "Kenstar E-Commerce", href: "/projects/kenstar" },
+              ]}
+              tech={[
+                <SiReact />,
+                <SiNextdotjs />,
+                <SiTailwindcss />,
+                <SiTypescript />,
+                <SiNodedotjs />,
+                <SiMongodb />,
+                <SiGraphql />,
+              ]}
+            />
 
-          {/* REAL BIZ */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-sm text-gray-500">Jan 2023 — July 2023</span>
-            <h3 className="text-2xl font-semibold mt-2">
-              Software Engineering Intern — Real Biz Digital
-            </h3>
-            <p className="text-gray-400 mt-4 leading-relaxed max-w-2xl">
-              Designed and developed responsive web interfaces, collaborated in
-              agile workflows, and strengthened UI/UX and version control
-              expertise in a remote environment.
-            </p>
-
-            <div className="flex gap-5 mt-6 text-xl text-gray-400">
-              <SiReact />
-              <SiFigma />
-              <SiGit />
-              <SiGithub />
-            </div>
-          </motion.div>
-
-          {/* USIU */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-sm text-gray-500">Sep 2019 — Oct 2023</span>
-            <h3 className="text-2xl font-semibold mt-2">
-              BSc Applied Computer Technology
-            </h3>
-            <p className="text-gray-400 mt-4 leading-relaxed max-w-2xl">
-              Built a strong foundation in computer science and software
-              engineering. Specialized in frontend development, algorithms,
-              system design, and collaborative software development.
-            </p>
-
-            <div className="flex gap-5 mt-6 text-xl text-gray-400">
-              <SiReact />
-              <SiNodedotjs />
-              <SiMongodb />
-              <SiGit />
-              <SiFigma />
-            </div>
-          </motion.div>
+            <TimelineItem
+              activateAt={0.85}
+              progress={smoothProgress}
+              date="Jan 2026 — Present"
+              title="Independent Software Engineer"
+              company="Freelance & Product Development"
+              description="Building high-performance platforms for clients while developing independent software products."
+              projects={[
+                {
+                  label: "Newsong Chapel Website",
+                  href: "https://www.newsongchapel.org/",
+                  external: true,
+                },
+              ]}
+              tech={[
+                <SiNextdotjs />,
+                <SiReact />,
+                <SiTailwindcss />,
+                <SiTypescript />,
+                <SiNodedotjs />,
+                <SiMongodb />,
+              ]}
+            />
+          </div>
         </div>
 
         {/* CV Button */}
-        <div className="mt-24">
+        <div className="mt-28">
           <a
             href="/Docs/Edwin cv.pdf"
             className="inline-block border border-[var(--gold)] px-8 py-4 rounded-full text-sm tracking-wide hover:bg-[var(--gold)] hover:text-black transition duration-300"
@@ -182,5 +168,92 @@ export default function Resume() {
         </div>
       </div>
     </section>
+  );
+}
+
+function TimelineItem({
+  date,
+  title,
+  company,
+  description,
+  projects,
+  tech,
+  progress,
+  activateAt,
+}: {
+  date: string;
+  title: string;
+  company: string;
+  description: string;
+  projects?: Project[];
+  tech?: React.ReactNode[];
+  progress: MotionValue<number>;
+  activateAt: number;
+}) {
+  const activation = useTransform(
+    progress,
+    [activateAt - 0.08, activateAt],
+    [0, 1]
+  );
+
+  const opacity = useTransform(activation, [0, 1], [0.4, 1]);
+  const y = useTransform(activation, [0, 1], [30, 0]);
+  const scale = useTransform(activation, [0, 1], [0.8, 1.4]);
+
+  return (
+    <motion.div style={{ opacity, y }} className="relative">
+      {/* Node */}
+      <motion.div
+        style={{ scale }}
+        className="absolute -left-[36px] top-2 w-4 h-4 rounded-full bg-[var(--gold)] shadow-[0_0_20px_var(--gold)]"
+      />
+
+      <span className="text-sm text-gray-500">{date}</span>
+
+      <h3 className="text-2xl font-semibold mt-2">{title}</h3>
+      <p className="text-gray-400">{company}</p>
+
+      <p className="text-gray-400 mt-4 max-w-2xl leading-relaxed">
+        {description}
+      </p>
+
+      {projects && (
+        <ul className="mt-4 space-y-3 text-gray-300">
+          {projects.map((project, i) => (
+            <li key={i} className="flex items-center gap-2 text-sm group">
+              <FaGlobe className="text-[var(--gold)] text-xs" />
+
+              {project.external ? (
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative inline-block transition duration-300 group-hover:text-[var(--gold)]"
+                >
+                  {project.label}
+                  <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-[var(--gold)] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+              ) : (
+                <Link
+                  href={project.href}
+                  className="relative inline-block transition duration-300 group-hover:text-[var(--gold)]"
+                >
+                  {project.label}
+                  <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-[var(--gold)] transition-all duration-300 group-hover:w-full"></span>
+                </Link>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {tech && (
+        <div className="flex gap-5 mt-6 text-xl text-gray-500">
+          {tech.map((Icon, i) => (
+            <span key={i}>{Icon}</span>
+          ))}
+        </div>
+      )}
+    </motion.div>
   );
 }
