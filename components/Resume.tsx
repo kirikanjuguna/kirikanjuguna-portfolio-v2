@@ -53,6 +53,10 @@ export default function Resume() {
       ref={ref}
       className="relative py-32 px-6 text-white"
     >
+      {/* Subtle background glow */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[var(--gold)] opacity-[0.04] blur-3xl rounded-full" />
+      </div>
       
       <div className="max-w-6xl mx-auto">
         {/* Title */}
