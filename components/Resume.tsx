@@ -51,8 +51,9 @@ export default function Resume() {
     <section
       id="resume"
       ref={ref}
-      className="relative py-32 px-6 bg-black text-white"
+      className="relative py-32 px-6 text-white"
     >
+      
       <div className="max-w-6xl mx-auto">
         {/* Title */}
         <div className="mb-24">
