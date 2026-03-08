@@ -1,10 +1,12 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 const projects = [
-    {
+  {
     id: "01",
+    slug: "kenstar",
     name: "Kenstar",
     statement: "A scalable digital presence for a multi-category manufacturer.",
     role: "Frontend & Architecture",
@@ -16,6 +18,7 @@ const projects = [
 
   {
     id: "02",
+    slug: "raleigh",
     name: "Raleigh Motorbikes",
     statement: "Modernizing a legacy brand for the digital era.",
     role: "Full Stack Developer",
@@ -24,12 +27,13 @@ const projects = [
     mobile: "/projects/raleigh-mobile.webp",
     link: "https://raleighmotorbikes.co.ke/",
   },
-
 ]
 
 export default function Projects() {
   return (
-    <section className="bg-[#0d0d11] text-white">
+    <section
+      id="projects"
+      className="bg-[#0d0d11] text-white">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Section Intro */}
@@ -73,13 +77,24 @@ export default function Projects() {
                   <p>{project.focus}</p>
                 </div>
 
+              <div className="flex gap-4">
+
                 <a
                   href={project.link}
                   target="_blank"
-                  className="inline-block border border-white/20 px-6 py-3 text-sm tracking-wide hover:bg-white hover:text-black transition-all duration-500"
+                  className="border border-white/20 px-6 py-3 text-sm tracking-wide hover:bg-white hover:text-black transition-all duration-500"
                 >
-                  Visit Live Site →
+                  Live Site
                 </a>
+
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="border border-yellow-500 text-yellow-500 px-6 py-3 text-sm tracking-wide hover:bg-yellow-500 hover:text-black transition-all duration-500"
+                >
+                  Case Study
+                </Link>
+
+              </div>
               </motion.div>
 
               {/* RIGHT VISUAL */}

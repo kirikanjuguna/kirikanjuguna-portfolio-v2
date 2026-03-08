@@ -32,7 +32,7 @@ export default function Hero() {
   }, [x, y]);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
 
         {/* LEFT CONTENT */}

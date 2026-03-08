@@ -44,6 +44,7 @@ export default function Contact() {
 
   return (
     <section
+      id="contact"
       data-theme="255, 140, 0"
       className="relative py-40 px-6 overflow-hidden"
     >
