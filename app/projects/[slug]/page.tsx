@@ -1,79 +1,80 @@
 import { projects } from "@/data/projects"
 import { notFound } from "next/navigation"
 import Image from "next/image"
+import ProjectHero from "@/components/ProjectHero"
 
-export default function ProjectPage({
+export default async function ProjectPage({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const project = projects.find((p) => p.slug === params.slug)
+
+  const { slug } = await params
+
+  const project = projects.find((p) => p.slug === slug)
 
   if (!project) return notFound()
 
   return (
-    <main className="min-h-screen px-6 py-32 max-w-5xl mx-auto">
+    <main className="bg-[#0d0d11] text-white">
 
-      <h1 className="text-5xl font-light mb-6">
-        {project.title}
-      </h1>
-
-      <p className="text-white/60 mb-12">
-        {project.description}
-      </p>
-
-      <Image
-        src={project.image}
-        alt={project.title}
-        width={1200}
-        height={700}
-        className="rounded-xl mb-16"
+      {/* HERO */}
+      <ProjectHero
+        title={project.title}
+        tagline={project.tagline}
       />
 
-      <section className="mb-16">
-        <h2 className="text-2xl mb-4">Problem</h2>
-        <p className="text-white/70">{project.problem}</p>
+      {/* HERO IMAGE */}
+      <section className="max-w-7xl mx-auto px-6 mb-40">
+
+        <Image
+          src={project.hero}
+          alt={project.title}
+          width={1600}
+          height={900}
+          className="rounded-2xl shadow-2xl"
+        />
+
       </section>
 
-      <section className="mb-16">
-        <h2 className="text-2xl mb-4">Solution</h2>
-        <p className="text-white/70">{project.solution}</p>
+      {/* PROBLEM */}
+      <section className="max-w-4xl mx-auto px-6 mb-40">
+
+        <h2 className="text-3xl font-light mb-6 text-yellow-500">
+          The Problem
+        </h2>
+
+        <p className="text-lg text-white/70 leading-relaxed">
+          {project.problem}
+        </p>
+
       </section>
 
-      <section className="mb-16">
-        <h2 className="text-2xl mb-4">Tech Stack</h2>
+      {/* SOLUTION */}
+      <section className="max-w-4xl mx-auto px-6 mb-40">
 
-        <div className="flex gap-4 flex-wrap">
-          {project.stack.map((tech) => (
-            <span
-              key={tech}
-              className="border border-white/10 px-4 py-2 rounded-lg text-sm"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+        <h2 className="text-3xl font-light mb-6 text-yellow-500">
+          The Approach
+        </h2>
+
+        <p className="text-lg text-white/70 leading-relaxed">
+          {project.solution}
+        </p>
+
       </section>
 
-      <div className="flex gap-6">
+      {/* SHOWCASE */}
+      <section className="max-w-7xl mx-auto px-6 mb-40">
 
-        <a
-          href={project.live}
-          target="_blank"
-          className="border border-white/20 px-6 py-3 rounded-lg hover:bg-white hover:text-black transition"
-        >
-          Live Site
-        </a>
+        <Image
+          src={project.image}
+          alt={project.title}
+          width={1600}
+          height={900}
+          className="rounded-xl shadow-2xl"
+        />
 
-        <a
-          href={project.github}
-          target="_blank"
-          className="border border-white/20 px-6 py-3 rounded-lg hover:bg-white hover:text-black transition"
-        >
-          GitHub
-        </a>
-
-      </div>
+      </section>
 
     </main>
   )
