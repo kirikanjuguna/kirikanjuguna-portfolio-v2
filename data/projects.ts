@@ -1,37 +1,69 @@
-export const projects = [
+import { Project } from "@/types/project"
+
+export const projects: Project[] = [
   {
     slug: "kenstar",
-    title: "Kenstar",
-    tagline: "Engineering a scalable digital presence for a global manufacturer.",
+    title: "Kenstar Plastics",
+    tagline: "Building a scalable product management platform.",
 
-    hero: "/projects/kenstar-hero.webp",
-    image: "/projects/kenstar-desktop.webp",
+    desktop: "/projects/kenstar-desktop.webp",
+    mobile: "/projects/kenstar-mobile.webp",
+
+    overview:
+      "Kenstar Plastics required a digital system to manage their growing catalog of plastic products.",
 
     problem:
-      "Kenstar required a modern digital platform capable of presenting multiple product categories while maintaining performance and scalability across devices.",
+      "The company needed a structured way to manage hundreds of products across multiple categories.",
 
     solution:
-      "I designed and built a scalable frontend architecture using Next.js, optimizing performance, improving navigation structure, and ensuring responsive layouts across devices.",
+      "I built a full-stack product management platform using Next.js and MongoDB.",
+
+    gallery: [
+      "/projects/kenstar/adminupload.webp",
+      "/projects/kenstar/cart.webp",
+      "/projects/kenstar/desktopview.webp",
+      "/projects/kenstar/enquiries.webp",
+      "/projects/kenstar/kenstarmobileview.webp",
+      "/projects/kenstar/login.webp",
+      "/projects/kenstar/productlist.webp",
+      "/projects/kenstar/productpage.webp"
+
+    ],
+
+    engineering: [
+      "JWT authentication with HTTP-only cookies",
+      "Protected routes using Next.js middleware",
+      "Multi-image uploads with Cloudinary",
+      "Serverless API architecture"
+    ],
+
+    challenges: [
+      "Solved case-sensitive filesystem bugs on Vercel",
+      "Migrated from jsonwebtoken to JOSE for Edge runtime",
+      "Debugged authentication cookies in production"
+    ],
 
     stack: [
       "Next.js",
-      "TypeScript",
+      "React",
+      "MongoDB",
+      "Mongoose",
       "Tailwind",
-      "Framer Motion",
-      "Vercel",
+      "Cloudinary"
     ],
 
     live: "https://new-kenstar-b.vercel.app",
-    github: "",
+    github: ""
   },
+
 
   {
     slug: "raleigh",
     title: "Raleigh Motorbikes",
     tagline: "Modernizing a legacy cycling brand for the digital era.",
 
-    hero: "/projects/raleigh-hero.webp",
-    image: "/projects/raleigh-desktop.webp",
+    desktop: "/projects/raleigh-desktop.webp",
+    mobile: "/projects/raleigh-mobile.webp",
 
     problem:
       "The brand required a modern web presence that could highlight products clearly while maintaining performance and accessibility.",

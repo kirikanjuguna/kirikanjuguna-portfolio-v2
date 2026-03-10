@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Home, User, Folder, Mail } from "lucide-react"
 import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 
 const items = [
   { icon: Home, label: "Home", link: "#hero" },
@@ -13,9 +14,14 @@ const items = [
 
 export default function Dock() {
 
+  const pathname = usePathname()
+  const prefix = pathname === "/" ? "" : "/"
+
   const [active, setActive] = useState("")
 
   useEffect(() => {
+
+    if (pathname !== "/") return
 
     const handleScroll = () => {
 
@@ -38,7 +44,7 @@ export default function Dock() {
 
     return () => window.removeEventListener("scroll", handleScroll)
 
-  }, [])
+  }, [pathname])
 
   return (
     <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
@@ -53,21 +59,14 @@ export default function Dock() {
 
             <motion.a
               key={i}
-              href={item.link}
+              href={`${prefix}${item.link}`}
               whileHover={{ scale: 1.4 }}
-              className="relative flex flex-col items-center text-white/70 hover:text-yellow-500 transition"
+              className="flex flex-col items-center text-white/70 hover:text-yellow-500 transition"
             >
 
-              {/* Icon */}
               <Icon size={24} />
 
-              {/* Tooltip */}
-              <span className="absolute -top-8 text-xs opacity-0 group-hover:opacity-100">
-                {item.label}
-              </span>
-
-              {/* Active indicator */}
-              {active === item.link && (
+              {active === item.link && pathname === "/" && (
                 <motion.div
                   layoutId="dockIndicator"
                   className="absolute -bottom-3 w-1.5 h-1.5 bg-yellow-500 rounded-full"
