@@ -18,7 +18,7 @@ const sora = Sora({
 
 export const metadata: Metadata = {
   title: "Kirika Njuguna | Software Engineer",
-  description: "Full-Stack Engineer building scalable web applications.",
+  description: "Software Engineer building modern scalable and world-class full-stack applications.",
 };
 
 export default function RootLayout({
