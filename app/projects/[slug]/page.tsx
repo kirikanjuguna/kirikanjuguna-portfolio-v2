@@ -21,7 +21,7 @@ export default async function ProjectPage({
 
       {/* BACK LINK */}
 
-      <div className="max-w-7xl mx-auto px-6 pt-16">
+      <div className="max-w-7xl mx-auto px-6 pt-12 md:pt-16">
 
         <Link
           href="/#projects"
@@ -46,13 +46,13 @@ export default async function ProjectPage({
       {/* OVERVIEW */}
 
       {project.overview && (
-        <section className="max-w-4xl mx-auto px-6 mb-40">
+        <section className="max-w-4xl mx-auto px-6 mb-24 md:mb-40">
 
-          <h2 className="text-3xl font-light mb-6 text-yellow-500">
+          <h2 className="text-2xl md:text-3xl font-light mb-6 text-yellow-500">
             Project Overview
           </h2>
 
-          <p className="text-lg text-white/70 leading-relaxed">
+          <p className="text-base md:text-lg text-white/70 leading-relaxed">
             {project.overview}
           </p>
 
@@ -62,13 +62,13 @@ export default async function ProjectPage({
 
       {/* PROBLEM */}
 
-      <section className="max-w-4xl mx-auto px-6 mb-40">
+      <section className="max-w-4xl mx-auto px-6 mb-24 md:mb-40">
 
-        <h2 className="text-3xl font-light mb-6 text-yellow-500">
+        <h2 className="text-2xl md:text-3xl font-light mb-6 text-yellow-500">
           The Problem
         </h2>
 
-        <p className="text-lg text-white/70 leading-relaxed">
+        <p className="text-base md:text-lg text-white/70 leading-relaxed">
           {project.problem}
         </p>
 
@@ -77,31 +77,32 @@ export default async function ProjectPage({
 
       {/* SOLUTION */}
 
-      <section className="max-w-4xl mx-auto px-6 mb-40">
+      <section className="max-w-4xl mx-auto px-6 mb-24 md:mb-40">
 
-        <h2 className="text-3xl font-light mb-6 text-yellow-500">
+        <h2 className="text-2xl md:text-3xl font-light mb-6 text-yellow-500">
           The Approach
         </h2>
 
-        <p className="text-lg text-white/70 leading-relaxed">
+        <p className="text-base md:text-lg text-white/70 leading-relaxed">
           {project.solution}
         </p>
 
       </section>
 
 
-      {/* SCREENSHOT EXPERIENCE */}
+      {/* FEATURES */}
 
       {project.features && (
         <ProjectGallery features={project.features} />
       )}
-      
+
+
       {/* ENGINEERING */}
 
       {project.engineering && (
-        <section className="max-w-4xl mx-auto px-6 mb-40">
+        <section className="max-w-4xl mx-auto px-6 mb-24 md:mb-40">
 
-          <h2 className="text-3xl font-light mb-8 text-yellow-500">
+          <h2 className="text-2xl md:text-3xl font-light mb-8 text-yellow-500">
             Engineering Highlights
           </h2>
 
@@ -122,9 +123,9 @@ export default async function ProjectPage({
       {/* CHALLENGES */}
 
       {project.challenges && (
-        <section className="max-w-4xl mx-auto px-6 mb-40">
+        <section className="max-w-4xl mx-auto px-6 mb-24 md:mb-40">
 
-          <h2 className="text-3xl font-light mb-8 text-yellow-500">
+          <h2 className="text-2xl md:text-3xl font-light mb-8 text-yellow-500">
             Challenges & Lessons
           </h2>
 
@@ -145,9 +146,9 @@ export default async function ProjectPage({
       {/* TECH STACK */}
 
       {project.stack && (
-        <section className="max-w-4xl mx-auto px-6 mb-40">
+        <section className="max-w-4xl mx-auto px-6 mb-24 md:mb-40">
 
-          <h2 className="text-3xl font-light mb-8 text-yellow-500">
+          <h2 className="text-2xl md:text-3xl font-light mb-8 text-yellow-500">
             Technology
           </h2>
 
@@ -170,7 +171,7 @@ export default async function ProjectPage({
 
       {/* LINKS */}
 
-      <section className="text-center pb-40">
+      <section className="text-center pb-24 md:pb-40">
 
         <div className="flex justify-center gap-6 flex-wrap">
 
@@ -178,7 +179,7 @@ export default async function ProjectPage({
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-white/20 px-8 py-4 rounded-lg hover:bg-white hover:text-black transition"
+            className="border border-white/20 px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-white hover:text-black transition"
           >
             Visit Live Site
           </a>
@@ -188,7 +189,7 @@ export default async function ProjectPage({
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-white/20 px-8 py-4 rounded-lg hover:bg-white hover:text-black transition"
+              className="border border-white/20 px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-white hover:text-black transition"
             >
               View Code
             </a>

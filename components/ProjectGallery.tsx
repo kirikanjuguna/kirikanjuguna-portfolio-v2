@@ -37,27 +37,74 @@ export default function ProjectGallery({ features }: { features: Feature[] }) {
 
     <section
       ref={containerRef}
-      className="relative max-w-[1400px] mx-auto px-6 mb-48"
+      className="relative max-w-[1400px] mx-auto px-6 mb-32 md:mb-48"
     >
 
-      {/* SECTION INTRO */}
+      {/* INTRO */}
 
-      <div className="max-w-3xl mb-32">
+      <div className="max-w-3xl mb-20 md:mb-32">
 
         <h2 className="text-sm tracking-widest text-yellow-500 mb-6">
           PRODUCT EXPERIENCE
         </h2>
 
-        <h3 className="text-4xl md:text-5xl font-light leading-tight">
+        <h3 className="text-3xl md:text-5xl font-light leading-tight">
           Built to solve real operational challenges.
         </h3>
 
       </div>
 
 
-      <div className="grid lg:grid-cols-2 gap-24">
+      {/* MOBILE LAYOUT */}
 
-        {/* LEFT SIDE TEXT */}
+      <div className="md:hidden space-y-20">
+
+        {features.map((feature) => (
+
+          <div key={feature.title} className="space-y-6">
+
+            <h3 className="text-2xl font-light text-yellow-500">
+              {feature.title}
+            </h3>
+
+            <p className="text-white/70 leading-relaxed">
+              {feature.description}
+            </p>
+
+            {feature.type === "mobile" ? (
+
+              <Image
+                src={feature.image}
+                alt="Mobile screenshot"
+                width={320}
+                height={640}
+                className="rounded-3xl shadow-2xl border border-white/10 mx-auto"
+              />
+
+            ) : (
+
+              <Image
+                src={feature.image}
+                alt="Desktop screenshot"
+                width={1200}
+                height={800}
+                className="rounded-2xl shadow-2xl border border-white/10"
+              />
+
+            )}
+
+          </div>
+
+        ))}
+
+      </div>
+
+
+      {/* DESKTOP LAYOUT */}
+
+      <div className="hidden md:grid lg:grid-cols-2 gap-24">
+
+        {/* LEFT TEXT */}
 
         <div className="space-y-48">
 
@@ -97,51 +144,49 @@ export default function ProjectGallery({ features }: { features: Feature[] }) {
         </div>
 
 
-        {/* RIGHT SIDE IMAGE */}
+        {/* RIGHT IMAGE */}
 
-      <div className="sticky top-28 h-fit">
+        <div className="sticky top-28 h-fit">
 
-        <div className="relative flex justify-center">
+          <div className="relative flex justify-center">
 
-          {/* Glow */}
+            <div className="absolute inset-0 bg-yellow-500/10 blur-[160px] rounded-full" />
 
-          <div className="absolute inset-0 bg-yellow-500/10 blur-[160px] rounded-full" />
+            <motion.div
+              key={features[active].image}
+              initial={{ opacity:0, scale:.96 }}
+              animate={{ opacity:1, scale:1 }}
+              transition={{ duration:.5 }}
+              className="relative"
+            >
 
-          <motion.div
-            key={features[active].image}
-            initial={{ opacity:0, scale:.96 }}
-            animate={{ opacity:1, scale:1 }}
-            transition={{ duration:.5 }}
-            className="relative"
-          >
+              {features[active].type === "mobile" ? (
 
-            {features[active].type === "mobile" ? (
+                <Image
+                  src={features[active].image}
+                  alt="Mobile screenshot"
+                  width={320}
+                  height={640}
+                  className="rounded-3xl shadow-2xl border border-white/10"
+                />
 
-              <Image
-                src={features[active].image}
-                alt="Mobile screenshot"
-                width={320}
-                height={640}
-                className="rounded-3xl shadow-2xl border border-white/10"
-              />
+              ) : (
 
-            ) : (
+                <Image
+                  src={features[active].image}
+                  alt="Desktop screenshot"
+                  width={1800}
+                  height={1100}
+                  className="rounded-2xl shadow-2xl border border-white/10 w-[900px]"
+                />
 
-              <Image
-                src={features[active].image}
-                alt="Desktop screenshot"
-                width={1600}
-                height={1000}
-                className="rounded-2xl shadow-2xl border border-white/10 w-full"
-              />
+              )}
 
-            )}
+            </motion.div>
 
-          </motion.div>
+          </div>
 
         </div>
-
-      </div>
 
       </div>
 
