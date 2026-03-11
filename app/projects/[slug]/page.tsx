@@ -23,12 +23,15 @@ export default async function ProjectPage({
 
       <div className="max-w-7xl mx-auto px-6 pt-12 md:pt-16">
 
-        <Link
-          href="/#projects"
-          className="text-white/60 hover:text-white text-sm transition"
-        >
-          ← Back to Projects
-        </Link>
+      <Link
+        href="/#projects"
+        className="group inline-flex items-center gap-2 text-white/50 hover:text-yellow-400 text-sm tracking-wide transition-all duration-300"
+      >
+        <span className="transform transition-transform duration-300 group-hover:-translate-x-1">
+          ←
+        </span>
+        Back to Projects
+      </Link>
 
       </div>
 

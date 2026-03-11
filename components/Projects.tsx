@@ -4,24 +4,25 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 
 const projects = [
-  {
-    id: "01",
-    slug: "kenstar",
-    name: "Kenstar",
-    statement: "A scalable digital presence for a multi-category manufacturer.",
-    role: "Frontend & Architecture",
-    focus: "Performance • Structure • Scalability",
-    desktop: "/projects/kenstar-desktop.webp",
-    mobile: "/projects/kenstar-mobile.webp",
-    link: "https://new-kenstar-b.vercel.app",
-  },
+{
+  id: "01",
+  slug: "kenstar",
+  name: "Kenstar Plastics Web app",
+  statement:
+    "A full-stack product management platform built to manage a large manufacturing catalog with scalable architecture and secure admin tooling.",
+  role: "Full-Stack Developer",
+  focus: "Architecture • UI • Authentication • Product Systems",
+  desktop: "/projects/kenstar-desktop.webp",
+  mobile: "/projects/kenstar-mobile.webp",
+  link: "https://new-kenstar-b.vercel.app",
+},
   {
     id: "02",
     slug: "raleigh",
     name: "Raleigh Motorbikes",
-    statement: "Modernizing a legacy brand for the digital era.",
+    statement: "A high-performance digital showroom built to showcase motorcycle models and capture high-intent customer enquiries across East Africa.",
     role: "Full Stack Developer",
-    focus: "UX • Performance • SEO",
+    focus: "UX • Performance • Product Systems",
     desktop: "/projects/raleigh-desktop.webp",
     mobile: "/projects/raleigh-mobile.webp",
     link: "https://raleighmotorbikes.co.ke/",
