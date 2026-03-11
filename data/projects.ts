@@ -115,35 +115,35 @@ export const projects: Project[] = [
         title: "Motorcycle Model Showcase",
         description:
           "A structured catalog presenting multiple motorcycle models with high-resolution imagery and key specifications to help customers quickly evaluate available options.",
-        image: "/projects/raleigh-models.webp",
+        image: "/projects/raleigh/raleigh-models.webp",
         type: "desktop",
       },
       {
         title: "Detailed Product Pages",
         description:
           "Each motorcycle includes a dedicated page featuring product imagery, engineering specifications, and performance data to assist buyers during research.",
-        image: "/projects/raleigh-product.webp",
+        image: "/projects/raleigh/raleigh-product.webp",
         type: "desktop",
       },
       {
         title: "Technical Specification Modules",
         description:
           "Structured specification tables present complex engine and performance data in a clear and readable format for both enthusiasts and commercial buyers.",
-        image: "/projects/raleigh-specs.webp",
+        image: "/projects/raleigh/raleigh-specs.webp",
         type: "desktop",
       },
       {
         title: "Direct Customer Enquiry System",
         description:
           "Integrated contact channels including WhatsApp and direct inquiry actions allow potential customers to instantly connect with the sales team.",
-        image: "/projects/raleigh-contact.webp",
+        image: "/projects/raleigh/raleigh-contact.webp",
         type: "desktop",
       },
       {
         title: "Mobile-Optimized Experience",
         description:
           "The entire platform is designed with a mobile-first approach, ensuring that customers browsing on smartphones can explore models and make enquiries seamlessly.",
-        image: "/projects/raleigh-mobile-view.webp",
+        image: "/projects/raleigh/raleigh-mobile-view.webp",
         type: "mobile",
       },
     ],
