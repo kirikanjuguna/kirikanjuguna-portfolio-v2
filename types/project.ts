@@ -1,4 +1,12 @@
+export type Feature = {
+  title: string
+  description: string
+  image: string
+  type?: "desktop" | "mobile"
+}
+
 export type Project = {
+
   slug: string
   title: string
   tagline: string
@@ -12,6 +20,8 @@ export type Project = {
 
   gallery?: string[]
 
+  features?: Feature[]
+
   engineering?: string[]
   challenges?: string[]
 
@@ -19,4 +29,5 @@ export type Project = {
 
   live: string
   github?: string
+
 }

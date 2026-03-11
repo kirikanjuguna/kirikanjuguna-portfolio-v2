@@ -1,6 +1,7 @@
 import { Project } from "@/types/project"
 
 export const projects: Project[] = [
+
   {
     slug: "kenstar",
     title: "Kenstar Plastics",
@@ -10,24 +11,43 @@ export const projects: Project[] = [
     mobile: "/projects/kenstar-mobile.webp",
 
     overview:
-      "Kenstar Plastics required a digital system to manage their growing catalog of plastic products.",
+      "Kenstar Plastics required a digital system to manage their growing catalog of plastic products. The platform needed to handle hundreds of SKUs, category hierarchies, and image uploads while maintaining performance and ease of management.",
 
     problem:
-      "The company needed a structured way to manage hundreds of products across multiple categories.",
+      "The company needed a structured way to manage hundreds of products across multiple categories. Their existing workflow relied on manual updates, which created inefficiencies and limited scalability.",
 
     solution:
-      "I built a full-stack product management platform using Next.js and MongoDB.",
+      "I built a full-stack product management platform using Next.js and MongoDB with a scalable architecture supporting image uploads, product categorization, and secure admin access.",
 
-    gallery: [
-      "/projects/kenstar/adminupload.webp",
-      "/projects/kenstar/cart.webp",
-      "/projects/kenstar/desktopview.webp",
-      "/projects/kenstar/enquiries.webp",
-      "/projects/kenstar/kenstarmobileview.webp",
-      "/projects/kenstar/login.webp",
-      "/projects/kenstar/productlist.webp",
-      "/projects/kenstar/productpage.webp"
-
+    features: [
+      {
+        title: "Admin Product Upload",
+        description:
+          "A structured admin system allowing sellers to upload products with images, pricing, and metadata.",
+        image: "/projects/kenstar/adminupload.webp",
+        type: "desktop"
+      },
+      {
+        title: "Product Discovery",
+        description:
+          "Customers can browse the full catalog with clear product pages and detailed specifications.",
+        image: "/projects/kenstar/productpage.webp",
+        type: "desktop"
+      },
+      {
+        title: "Customer Enquiries",
+        description:
+          "Instead of checkout, the platform allows users to submit enquiries which are sent directly to the sales team.",
+        image: "/projects/kenstar/enquiries.webp",
+        type: "desktop"
+      },
+      {
+        title: "Mobile view",
+        description:
+          "Instead of checkout, the platform allows users to submit enquiries which are sent directly to the sales team.",
+        image: "/projects/kenstar/kenstarmobileview.webp",
+        type: "mobile"
+      },
     ],
 
     engineering: [
@@ -48,7 +68,7 @@ export const projects: Project[] = [
       "React",
       "MongoDB",
       "Mongoose",
-      "Tailwind",
+      "Tailwind CSS",
       "Cloudinary"
     ],
 
@@ -65,20 +85,29 @@ export const projects: Project[] = [
     desktop: "/projects/raleigh-desktop.webp",
     mobile: "/projects/raleigh-mobile.webp",
 
+    overview:
+      "Raleigh required a modern digital platform that could showcase their products clearly while maintaining strong performance and SEO. The goal was to modernize the brand’s online presence without sacrificing usability.",
+
     problem:
-      "The brand required a modern web presence that could highlight products clearly while maintaining performance and accessibility.",
+      "The existing digital experience lacked clarity, speed, and modern design principles, making it difficult for users to explore the brand's products effectively.",
 
     solution:
-      "I built a modern, responsive platform focusing on UX clarity, fast loading times, and strong SEO foundations.",
+      "I developed a responsive platform focused on performance, clean UX structure, and SEO optimization to help the brand present its products more effectively online.",
+
+    gallery: [
+      "/projects/raleigh-desktop.webp",
+      "/projects/raleigh-mobile.webp"
+    ],
 
     stack: [
       "Next.js",
-      "Tailwind",
+      "Tailwind CSS",
       "Node.js",
-      "SEO Optimization",
+      "SEO Optimization"
     ],
 
     live: "https://raleighmotorbikes.co.ke/",
-    github: "",
+    github: ""
   },
+
 ]
