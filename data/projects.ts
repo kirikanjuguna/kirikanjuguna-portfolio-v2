@@ -3,6 +3,98 @@ import { Project } from "@/types/project"
 export const projects: Project[] = [
 
   {
+    slug: "newsong",
+    title: "New Song Chapel Platform",
+    tagline: "Building a full-stack church platform with a custom admin CMS for managing news, media, and community communication.",
+
+    desktop: "/projects/newsong-desktop.webp",
+    mobile: "/projects/newsong-mobile.webp",
+
+    overview:
+      "New Song Chapel required a modern digital platform that could serve both as a public website and an internal content management system. The platform needed to allow administrators to publish news updates, manage a media gallery, and provide visitors with easy ways to connect with the church.",
+
+    problem:
+      "The church previously relied on manual communication channels and lacked a centralized platform for publishing updates, sharing event photos, and engaging visitors online. Managing content required technical intervention, which slowed down communication with the church community.",
+
+    solution:
+      "I designed and developed a full-stack platform using Next.js, MongoDB, and Cloudinary that allows administrators to manage news articles and gallery media through a custom admin dashboard. The platform also includes a contact system powered by the Resend API, enabling visitors to easily reach the church.",
+
+    features: [
+      {
+        title: "Admin Content Management System",
+        description:
+          "A secure admin dashboard that allows church administrators to publish news updates and manage gallery content without requiring technical knowledge.",
+        image: "/projects/newsong/admin-dashboard.webp",
+        type: "desktop",
+      },
+      {
+        title: "Dynamic News Publishing System",
+        description:
+          "Administrators can create and publish news articles that appear instantly on the public website, enabling the church to share announcements and community updates.",
+        image: "/projects/newsong/news-system.webp",
+        type: "desktop",
+      },
+      {
+        title: "Gallery Media Management",
+        description:
+          "The platform includes a gallery management system where admins upload event photos and ministry images using Cloudinary for optimized media delivery.",
+        image: "/projects/newsong/gallery-system.webp",
+        type: "desktop",
+      },
+      {
+        title: "Visitor Contact & Communication",
+        description:
+          "A contact system powered by the Resend API allows visitors to send messages directly to the church with reliable email delivery.",
+        image: "/projects/newsong/contact-form.webp",
+        type: "desktop",
+      },
+      {
+        title: "Dark mode",
+        description:
+          "The platform includes a dark mode feature that allows users to switch to a dark theme for improved readability in low-light environments.",
+        image: "/projects/newsong/dark-mode.webp",
+        type: "desktop",
+      },
+      {
+        title: "Responsive Community Experience",
+        description:
+          "The platform is fully responsive, ensuring that visitors can browse news updates, view galleries, and connect with the church seamlessly across mobile, tablet, and desktop devices.",
+        image: "/projects/newsong/newsong-mobile.webp",
+        type: "mobile",
+      },
+    ],
+
+    engineering: [
+      "Custom admin CMS for managing news articles and gallery media",
+      "MongoDB-backed dynamic content architecture using Mongoose",
+      "Cloudinary image upload pipeline with automatic optimization",
+      "Serverless email delivery integration using the Resend API",
+      "Component-based frontend architecture using Next.js App Router",
+    ],
+
+    challenges: [
+      "Designing an admin workflow that allows non-technical users to manage website content",
+      "Implementing optimized image uploads using Cloudinary transformations",
+      "Handling environment-specific API URL resolution between development and production",
+      "Improving search engine indexing through sitemap generation and Search Console integration",
+    ],
+
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "MongoDB",
+      "Mongoose",
+      "Tailwind CSS",
+      "Cloudinary",
+      "Resend API",
+    ],
+
+    live: "https://www.newsongchapel.org",
+    github: ""
+  },
+
+  {
     slug: "kenstar",
     title: "Kenstar Plastics",
     tagline: "Building a scalable full-stack product management platform for one of the leading Kenyan manufacturers.",
