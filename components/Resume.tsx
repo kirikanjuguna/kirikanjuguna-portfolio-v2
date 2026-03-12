@@ -165,7 +165,7 @@ export default function Resume() {
         {/* CV Button */}
         <div className="mt-28">
           <a
-            href="/Docs/Edwin cv.pdf"
+            href="/Docs/Edwin_cv.pdf"
             className="inline-block border border-[var(--gold)] px-8 py-4 rounded-full text-sm tracking-wide hover:bg-[var(--gold)] hover:text-black transition duration-300"
           >
             View CV
