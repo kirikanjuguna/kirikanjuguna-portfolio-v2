@@ -72,7 +72,7 @@ export default function Hero() {
         </div>
 
         {/* RIGHT AVATAR */}
-        <div className="relative hidden md:flex items-center justify-center">
+        <div className="relative flex items-center justify-center order-first md:order-none mb-10 md:mb-0">
 
           {/* Glow */}
           <div className="absolute w-[420px] h-[420px] bg-[var(--gold)] rounded-full blur-3xl opacity-20" />
