@@ -15,21 +15,59 @@ export default function Hero() {
   const smoothX = useSpring(x, { stiffness: 200, damping: 25 });
   const smoothY = useSpring(y, { stiffness: 200, damping: 25 });
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { innerWidth, innerHeight } = window;
+useEffect(() => {
+  let idleTimeout: NodeJS.Timeout;
 
-      // Subtle premium movement
-      const moveX = (e.clientX / innerWidth - 0.5) * 5;
-      const moveY = (e.clientY / innerHeight - 0.5) * 5;
+  const moveEyes = (clientX: number, clientY: number) => {
+    const { innerWidth, innerHeight } = window;
 
-      x.set(moveX);
-      y.set(moveY);
-    };
+    const moveX = (clientX / innerWidth - 0.5) * 5;
+    const moveY = (clientY / innerHeight - 0.5) * 5;
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [x, y]);
+    x.set(moveX);
+    y.set(moveY);
+  };
+
+  // 🖥️ Mouse tracking
+  const handleMouseMove = (e: MouseEvent) => {
+    moveEyes(e.clientX, e.clientY);
+    resetIdle();
+  };
+
+  // 📱 Touch tracking
+  const handleTouchMove = (e: TouchEvent) => {
+    const touch = e.touches[0];
+    moveEyes(touch.clientX, touch.clientY);
+    resetIdle();
+  };
+
+  // 🌙 Idle animation
+  const startIdle = () => {
+    idleTimeout = setInterval(() => {
+      const randomX = (Math.random() - 0.5) * 3;
+      const randomY = (Math.random() - 0.5) * 3;
+
+      x.set(randomX);
+      y.set(randomY);
+    }, 2000); // move every 2 seconds
+  };
+
+  const resetIdle = () => {
+    clearInterval(idleTimeout);
+    startIdle();
+  };
+
+  window.addEventListener("mousemove", handleMouseMove);
+  window.addEventListener("touchmove", handleTouchMove);
+
+  startIdle();
+
+  return () => {
+    window.removeEventListener("mousemove", handleMouseMove);
+    window.removeEventListener("touchmove", handleTouchMove);
+    clearInterval(idleTimeout);
+  };
+}, [x, y]);
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
